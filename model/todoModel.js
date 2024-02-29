@@ -4,21 +4,25 @@ const todoModel = require("../schema/todoListSchema");
 const mongoose = require("mongoose");
 var connectionWatch = require("../server/db");
 
-exports.insertTask = function (req, res) {
+exports.insertTask = async function (req, res) {
   let data = req.body;
   try {
-    const result = todoModel.insertMany(data);
+    const result = await todoModel.insertMany(data);
+    res.send(result);
   } catch (err) {
     console.log(err);
     res.send(err);
   }
 };
 
-exports.getAllTask = function (req, res) {
+exports.getAllTask = async function (req, res) {
   try {
-    const result = todoModel.find({
+    const result = await todoModel.find({
       delete_flag: false,
     });
+
+    console.log(result);
+    res.send(result);
   } catch (err) {
     console.log(err);
     res.send(err);
