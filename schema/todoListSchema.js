@@ -6,7 +6,11 @@ const todoListSchema = new mongoose.Schema(
     taskDescription: String,
     dueDate: Date,
     priority: String,
-    status: String,
+    status: {
+      type: String,
+      default: "Not Started",
+    },
+    requester: String,
     owner: String,
     comments: String,
     fileLink: String,

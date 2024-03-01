@@ -20,11 +20,19 @@ exports.getAllTask = async function (req, res) {
     const result = await todoModel.find({
       delete_flag: false,
     });
-
-    console.log(result);
     res.send(result);
   } catch (err) {
     console.log(err);
     res.send(err);
+  }
+};
+
+exports.updateTask = async function (req, res) {
+  let data = req.body;
+  try {
+    const result = await todoModel.findByIdAndUpdate(data._id, data);
+    res.send(result);
+  } catch (err) {
+    console.log(err);
   }
 };
